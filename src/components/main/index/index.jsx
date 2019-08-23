@@ -15,7 +15,7 @@ class Index extends React.Component {
         return (
             <Fragment>
                 <InitStyled />
-                <City />
+                <City/>
             </Fragment>
         )
     }

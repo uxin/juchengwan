@@ -416,14 +416,15 @@ export const ActivityDiv_a = styled.div`
         .Activity_buttom_r{
             margin-left: ${r(15)};
             float: left;
+            width: ${r(233)};
             p{
                 &:nth-child(1){
                     width: 100%;
-                    height: ${r(20)} ;
                     color: #232323;
                     font-size: ${r(14)};
                     font-weight: 700;
-                    line-height: ${r(20)};
+                    text-align:left;
+                    line-height: ${r(22)};
                 }
                 &:nth-child(2){
                     width: 100%;

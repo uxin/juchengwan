@@ -1,4 +1,4 @@
-import request from "@/core/http/http";
+import axios from "axios"
 
 export const GET_TICKETFOLDER_SHOWCATEGORY = "ticketFolder/get_ticketFolder_showCategory";
 export const GET_TICKETFOLDER_LIST = "ticketFolder/get_ticketFolder_list";
@@ -14,13 +14,13 @@ export const action = (val, type) => {
 // tab栏
 export const loadTicketShowCategoryAsync = (dispatch) => {
     return () => {
-        request({
+        axios({
             method: "get",
-            url: "https://m.juooo.com/Search/getShowCategory?version=6.0.3&referer=2",
-            // params:{
-            //     version:"6.0.3",
-            //     referer:"2",
-            // }
+            url: "/apm/Search/getShowCategory",
+            params:{
+                version:"6.0.3",
+                referer:"2",
+            }
         }).then((res) => {
             dispatch(action(res, GET_TICKETFOLDER_SHOWCATEGORY));
         })
@@ -31,9 +31,9 @@ export const loadTicketShowCategoryAsync = (dispatch) => {
 // https://m.juooo.com/Search/getShowList?category=35&city_id=0&page=1&keywords=&version=6.0.3&referer=2
 export const loadTicketListAsync = (dispatch) => {
     return () => {
-        request({
+        axios({
             method: "get",
-            url: "https://m.juooo.com/Search/getShowList",
+            url: "/apm/Search/getShowList",
             params: {
                 category:"35",
                 city_id: "0",
@@ -52,9 +52,9 @@ export const loadTicketListAsync = (dispatch) => {
 
 export const loadTicketCitytAsync = (dispatch) => {
     return () => {
-        request({
+        axios({
             method: "get",
-            url: "https://m.juooo.com/Search/getCity?version=6.0.3&referer=2",
+            url: "/apm/Search/getCity?version=6.0.3&referer=2",
         }).then((res) => {
             dispatch(action(res, GET_TICKETFOLDER_CITY));
         })

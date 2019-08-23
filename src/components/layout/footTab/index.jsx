@@ -1,22 +1,23 @@
 import React from 'react';  //Fragment 虚拟节点
 import { TabBar } from 'antd-mobile';
 import { FootTab, IndexIcon, IndexTxt, TheaterIcon, TheaterTxt, TicketFolderIcon, TicketFolderTxt, MyIcon, MyTxt } from "@/components/layout/footTab/styled"
-import {Link } from "react-router-dom";
-export default class TabBarExample extends React.PureComponent {
+import {Link,withRouter } from "react-router-dom";
+class TabBarExample extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             selectedTab: 'index',
             hidden: false,
-            fullScreen: false,
+            FootTabList:[
+                { tag:''},
+            ]
         };
     }
-
     render() {
         return (
-            <FootTab>
-                <TabBar unselectedTintColor="#232323" tintColor="#232323" barTintColor="white" hidden={false} >
-                    <TabBar.Item icon={<Link to="/index"><IndexIcon /></Link>} selectedIcon={<IndexTxt />} title="" key="首页" selected={this.state.selectedTab === 'index'} onPress={() => {
+            <FootTab display={this.props.location.pathname === "/ticketFolder" || this.props.location.pathname === "/login" || this.props.location.pathname === "/register"?"none":"block"}>
+                <TabBar unselectedTintColor="#232323" tintColor="#232323" barTintColor="white" hidden={this.state.hidden} >
+                    <TabBar.Item icon={<Link to="/index"><IndexIcon /></Link>} selectedIcon={<IndexTxt/>} title="" key="首页" selected={this.state.selectedTab === 'index'} onPress={() => {
                         this.setState({
                             selectedTab: 'index',
                         });
@@ -35,7 +36,7 @@ export default class TabBarExample extends React.PureComponent {
                         });
                     }}>
                     </TabBar.Item>
-                    <TabBar.Item icon={<Link to="/my/login"><MyIcon /></Link>} selectedIcon={<MyTxt />} title="我的" key="我的" selected={this.state.selectedTab === 'my'} onPress={() => {
+                    <TabBar.Item icon={<Link to="/my"><MyIcon /></Link>} selectedIcon={<MyTxt />} title="我的" key="我的" selected={this.state.selectedTab === 'my'} onPress={() => {
                         this.setState({
                             selectedTab: 'my',
                         });
@@ -45,8 +46,5 @@ export default class TabBarExample extends React.PureComponent {
             </FootTab>
         );
     }
-    test(){
-
-        //
-    }
 }
+export default withRouter(TabBarExample)

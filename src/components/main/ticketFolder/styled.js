@@ -148,7 +148,7 @@ export const TicketSectionCity=styled.div`
             bottom: 0;
             right:0;
             .btn{
-                width: 36%;
+                width: ${r(137)};
                 height: ${r(45)};
                 font-size: ${r(14)};
                 line-height: ${r(45)};

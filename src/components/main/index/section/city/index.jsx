@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';  //Fragment 虚拟节点
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { IndexHeader, CityDiv } from "@/components/main/index/section/styled";
 import 'font-awesome/css/font-awesome.css'
 import { loadHotCityDataAsync, loadMoreCityAsync, SET_INDEX_DATA } from "@/components/main/index/actionCreator";
@@ -17,16 +18,16 @@ class City extends PureComponent {
         this.state = {
             isCity: true,
             heightNum: "",
-            qq: ""
         }
     }
     render() {
-        // console.log(this.state.heightNum);
+        window.addEventListener('scroll', this.handleScroll.bind(this));
+        let heightNum = window.scrollY;
         if (this.state.isCity) {
             return (
                 <Fragment>
-                    <IndexHeader heightNum={this.state.heightNum}>
-                        <div className="city" >
+                    <IndexHeader heightNum={this.state.heightNum} ref="bodyBox">
+                        <div className="city">
                             <div className="city_box" onClick={() => {
                                 this.setState({ isCity: !this.state.isCity })
                             }}>
@@ -43,7 +44,7 @@ class City extends PureComponent {
                     </IndexHeader>
                     <Recommend>
                         <Banner />
-                        <VocalConcert />
+                        <VocalConcert/>
                         <Activity />
                         <Card />
                         <HotProgram />
@@ -122,16 +123,15 @@ class City extends PureComponent {
     componentDidMount() {
         this.props.handleGetHotCityData.bind(this)();
         window.addEventListener('scroll', this.handleScroll.bind(this));
-
     }
-    handleScroll() {
+    handleScroll (e) {
+        // window.scrollY
         //获取滚动条的高度
-        // console.log(window.scrollY);
-
-        this.setState({
-            heightNum: window.scrollY
-        })
-
+        if (e.target.URL === "http://localhost:8800/#/index"){
+            this.setState({
+                heightNum: e.srcElement.scrollingElement.scrollTop
+            })
+        }
     }
     scrollsqq(index) {
         if (index === 0) {
@@ -187,4 +187,4 @@ const mapDispatchToProps = (dispatch) => ({
         this.setState({ isCity: !this.state.isCity });
     }
 })
-export default connect(mapStateToProps, mapDispatchToProps)(City);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(City));

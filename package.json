@@ -20,6 +20,7 @@
     "redux": "^4.0.4",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0",
+    "storejs": "^1.0.25",
     "styled-components": "^4.3.2",
     "swiper": "3.4.2"
   },

@@ -11,6 +11,7 @@ class Recommend extends PureComponent {
         super(props);
         this.state = {
             page: 1,
+            height: document.documentElement.clientHeight,
         };
     }
     render() {
@@ -18,9 +19,13 @@ class Recommend extends PureComponent {
             this.props.recommend.size ? (
                 <RecommendDiv>
                     <PullToRefresh
-                        damping={60}
+                        damping={70}
                         ref={el => this.ptr = el}
                         direction={'up'}
+                        style={{
+                            height: this.state.height,
+                            overflow: 'auto',
+                        }}
                         onRefresh={() => {
                             this.props.pageInit.bind(this, { cityAdd: this.props.currentCity.toJS().Abbreviation, page: ++this.state.page})();
                         }}

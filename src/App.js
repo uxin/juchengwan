@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router-dom"
 import './App.css';
 import FootTab from "@/components/layout/footTab"
 import Router from '@/router';
@@ -11,4 +12,4 @@ function App() {
     </div>
   );
 }
-export default App;
+export default withRouter(App);

@@ -1,5 +1,6 @@
 // 该文件做代理以及mock数据和登入注册 ,该使用的是nodejs范畴
 const httpProxy = require("http-proxy-middleware");
+const userData = require("./data/userInfo.json");
 
 module.exports = function (app) {
     // var userInfo=[]
@@ -17,4 +18,20 @@ module.exports = function (app) {
             "^/apis":""
         }
     }))
+
+    // https://m.juooo.com/Search/getShowCategory?version=6.0.3&referer=2
+    app.use(httpProxy("/apm", {
+        target: "https://m.juooo.com",
+        changeOrigin: true,
+        pathRewrite: {
+            "^/apm": ""
+        }
+    }))
+
+    // 登录
+    app.post("/login",(req,res)=>{
+        // let query = req.body;
+        // console.log(query);
+        res.json(userData.userList[0]);
+    })
 }

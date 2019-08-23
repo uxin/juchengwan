@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from "react-redux";
 import store from "@/store/index";
 import "react-flexible";  //rem
@@ -12,9 +12,9 @@ import * as serviceWorker from './serviceWorker';
 // store将数据仓库注册全局
 ReactDOM.render(
     <Provider store={store}>
-        <HashRouter>
+        <Router>
             <App />
-        </HashRouter>
+        </Router>
     </Provider>,
     document.getElementById('root')
 );

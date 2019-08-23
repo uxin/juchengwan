@@ -51,6 +51,9 @@ export const LoginDiv = styled.div`
             background-color: #ebebeb;
             border-radius: ${r(50)};
             margin-top:${r(50)};
+            &:active{
+                background-color:red;
+            }
         }
         .login_forget{
             width: 100%;

@@ -1,5 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';  //Fragment 虚拟节点
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { TicketFolderHeader, TicketFolderDiv, TicketSectionCity, Paomo } from "@/components/main/ticketFolder/styled";
 import 'font-awesome/css/font-awesome.css';
 import Swiper from "@/components/layout/swiper";
@@ -21,13 +22,13 @@ class TicketFolder extends PureComponent {
             this.props.showCategory.size && this.props.ticketCity.size ? (
                 <Fragment>
                     <TicketFolderHeader>
-                        <i className="fa  fa-angle-left fa-2x"></i>
+                        <i className="fa  fa-angle-left fa-2x" onClick={() => this.props.history.go(-1)}></i>
                         <p>全国</p>
                         <i className="fa   fa-ellipsis-h fa-2x"></i>
                     </TicketFolderHeader>
                     <TicketFolderDiv>
                         <div className="TicketFolder_box">
-                            <Swiper id={"TicketFolder_swiper"} swiperConfig={{ slidesPerView: 5, freeMode: true, spaceBetween: 0, slidesOffsetAfter: 400 }}>
+                            <Swiper id={"TicketFolder_swiper"} swiperConfig={{ slidesPerView: 5, freeMode: true, spaceBetween: 0, slidesOffsetAfter: 100 }}>
                                 <div className="swiper-slide">
                                     <span className={`${this.state.con === -1 ? 'borb_cli' : ' '}`} onClick={this.borbCli_allCity.bind(this)}>全国</span>
                                 </div>
@@ -47,7 +48,6 @@ class TicketFolder extends PureComponent {
                             </div>
                         </div>
                         <TicketSection></TicketSection>
-                        <div style={{ winth: "100%", height: "1.3rem" }}></div>
                     </TicketFolderDiv>
                     <TicketSectionCity dis={this.state.isCity ? "none" : "block"}>
                         <div className="TicketSectionCity_box">
@@ -78,7 +78,7 @@ class TicketFolder extends PureComponent {
     }
     componentDidMount() {
         this.props.pageInit.bind(this)();
-        this.confirm_btn.bind(this)()
+        this.confirm_btn.bind(this)();
     }
     borbCli(index) {
         this.setState({ con: index })
@@ -109,4 +109,4 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(loadTicketCitytAsync(dispatch))
     }
 })
-export default connect(mapStateToProps, mapDispatchToProps)(TicketFolder);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TicketFolder));

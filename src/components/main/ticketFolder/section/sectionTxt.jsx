@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import { PullToRefresh } from 'antd-mobile';  //下拉加载
 import { loadTicketListAsync } from "@/components/main/ticketFolder/actionCreator"
 class TicketSection extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            height: document.documentElement.clientHeight,
+        };
+    }
     render() {
         return (
             this.props.ticketList.size ? (
@@ -12,8 +18,9 @@ class TicketSection extends PureComponent {
                         damping={60}
                         ref={el => this.ptr = el}
                         direction={'up'}
-                        onRefresh={() => {
-                            console.log("ok");
+                        style={{
+                            height: this.state.height,
+                            overflow: 'auto',
                         }}
                     >
                         <ul className="Recommend_ul">

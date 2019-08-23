@@ -9,7 +9,7 @@ class Swiper extends PureComponent {
     render() {
         return (
             <Fragment>
-                <div className="swiper-container" height={this.props.height} >
+                <div className="swiper-container" height={this.props.height}>
                     <div className="swiper-wrapper">
                         {this.props.children}
                     </div>

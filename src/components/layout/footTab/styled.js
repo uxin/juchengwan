@@ -7,6 +7,7 @@ width:100%;
 position:fixed;
 bottom:0;
 z-index: 100;
+display:${props => props.display};
 
 .am-tab-bar-bar{
     height:${r(50)};

@@ -84,11 +84,8 @@ export const TheaterBox = styled.div`
 
         /* swiper的滑动轮播 */
     .swiper-container.swiper-container-horizontal{
-        width:100%;
-        /* height:${props => {
-        return props.height ? props.height : "178px"
-    }}; */
-    margin-top: ${r(20)};
+            width:100%;
+            margin-top: ${r(20)};
         .swiper-wrapper{
                 .swiper-slide{
                     margin-right:${r(8)};
